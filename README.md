@@ -16,6 +16,9 @@ You need to use tech stack below for this project:
 - Typescript
 - E2E tests (Optional)
 
+## Submission
+To submit this project, you can push your project to a Github repository & send the Github URL to angga@bicarakan.id.
+
 The objective of this project is to assess your capability to work with technologies we use in our day-to-day job at Bicarakan.id. We highly valued things like code organization, design sense, and testing capabilities so keep that in mind.
 
 If you have any questions, feel free to ask us at angga@bicarakan.id.
