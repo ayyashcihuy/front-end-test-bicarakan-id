@@ -1,0 +1,8 @@
+const actionType = {
+  FETCH_DATA: "FETCH_DATA",
+  CHANGE_CATEGORY: "CHANGE_CATEGORY",
+  CHANGE_LOADING: "CHANGE_LOADING",
+  CHANGE_ERROR: "CHANGE_ERROR",
+};
+
+export default actionType;
