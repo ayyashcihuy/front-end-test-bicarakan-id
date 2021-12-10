@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createData } from "../store/action";
+import { createData, changeCategory } from "../store/action";
 import Swal from "sweetalert2";
 
 function CreateTask() {
@@ -11,14 +11,19 @@ function CreateTask() {
 
   function submitData(e: { preventDefault: () => void }) {
     e.preventDefault();
-    const data = {
-      title,
-      status: "On Progress",
-      date: new Date().toLocaleString(),
-    };
-    dispatch(createData(data));
-    Swal.fire("Created!", "You create a new task!", "success");
-    history.push("/");
+    dispatch(changeCategory("all"));
+    if (title) {
+      const data = {
+        title,
+        status: "On Progress",
+        date: new Date().toLocaleString(),
+      };
+      dispatch(createData(data));
+      Swal.fire("Created!", "You create a new task!", "success");
+      history.push("/");
+    } else {
+      Swal.fire("Error!", "To Do List Cannot be Empty", "error");
+    }
   }
 
   function backToHome() {
@@ -29,8 +34,9 @@ function CreateTask() {
     <div>
       <form className="container" onSubmit={submitData}>
         <div>
-          <label className="font-bold mb-3">Title</label>
+          <label className="font-bold mb-3 mt-10">To Do List</label>
           <input
+            placeholder="Apa yang akan anda lakukan hari ini? :)"
             type="text"
             className="form-control"
             value={title}

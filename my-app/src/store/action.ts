@@ -77,7 +77,6 @@ export const createData = (data: {
   status: string;
   date: string;
 }) => {
-  console.log(data, "dari action");
   return (dispatch: (arg0: (dispatch: any) => void) => void) => {
     axios({
       method: "POST",
@@ -93,7 +92,7 @@ export const createData = (data: {
   };
 };
 
-export const deleteData = (id: any) => {
+export const deleteData = (id: any, categoryName: string) => {
   console.log(id);
   return (dispatch: (arg0: (dispatch: any) => void) => void) => {
     axios({
@@ -101,7 +100,7 @@ export const deleteData = (id: any) => {
       url: `http://localhost:3000/tasks/${id}`,
     })
       .then(({ data }) => {
-        dispatch(fetchData());
+        dispatch(fetchDataByCategory(categoryName));
       })
       .catch((err) => {
         console.log(err);
