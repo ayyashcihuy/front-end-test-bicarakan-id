@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { patchDoneTask, deleteData, fetchData } from "../store/action";
 
@@ -13,16 +13,20 @@ type ValueProps = {
 const CardToDo: React.FC<ValueProps> = ({ title, status, date, id }) => {
   const dispatch = useDispatch();
 
-  function deleteTask(id: number) {
-    console.log(id);
+  const { categoryName } = useSelector((state: any) => {
+    return {
+      categoryName: state.categoryName,
+    };
+  });
 
+  function deleteTask(id: number) {
     dispatch(deleteData(id));
     Swal.fire("Deleted!", "You Deleted the Task!", "success");
     dispatch(fetchData());
   }
 
   function doneTask(id: number) {
-    dispatch(patchDoneTask(id));
+    dispatch(patchDoneTask(id, categoryName));
     Swal.fire("Congratulations!", "You Finish Your Task!", "success");
   }
 

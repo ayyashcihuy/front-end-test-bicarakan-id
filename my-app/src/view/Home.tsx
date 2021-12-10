@@ -1,16 +1,40 @@
-import { ReactChild, ReactFragment, ReactPortal, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import {
-  fetchData,
-  deleteData,
-  fetchDataByCategory,
-  changeCategory,
-  patchDoneTask,
-} from "../store/action";
+import { fetchDataByCategory, changeCategory } from "../store/action";
 import CardToDo from "../components/card";
+import Lottie from "react-lottie";
+import DataNotFound from "../asset/85557-empty.json";
+import Loading from "../asset/9844-loading-40-paperplane.json";
+import Error from "../asset/44656-error.json";
 
 function Home() {
+  const dataNotFoundOption = {
+    loop: true,
+    autoplay: true,
+    animationData: DataNotFound,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const errorOption = {
+    loop: true,
+    autoplay: true,
+    animationData: Error,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const loadingOption = {
+    loop: true,
+    autoplay: true,
+    animationData: Loading,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   const dispatch = useDispatch();
   const { todoList, categoryName, loading, error } = useSelector(
     (state: any) => {
@@ -27,26 +51,33 @@ function Home() {
     dispatch(fetchDataByCategory(categoryName));
   }, [categoryName]);
 
-  function deleteTask(id: number) {
-    dispatch(deleteData(id));
-    Swal.fire("Deleted!", "You Deleted the Task!", "success");
-    dispatch(fetchData());
-  }
-
   function changeCategoryF(e: string) {
     dispatch(changeCategory(e));
   }
 
   function ErrorMsg() {
-    return <p>Samtingwong</p>;
+    return (
+      <div>
+        <Lottie options={dataNotFoundOption} height={400} width={400} />
+        <p>Data Not Found :(</p>
+      </div>
+    );
   }
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <Lottie options={loadingOption} height={400} width={400} />
+      </div>
+    );
   }
 
   if (error) {
-    return <p>Something Wrong...</p>;
+    return (
+      <div>
+        <Lottie options={errorOption} height={400} width={400} />
+      </div>
+    );
   }
   return (
     <div className="container mt-6 d-flex flex-column justify-content-center">
@@ -64,8 +95,8 @@ function Home() {
               }}
             >
               <option value="all">All</option>
-              <option value="onProgress">On Progress</option>
-              <option value="done">Done</option>
+              <option value="On Progress">On Progress</option>
+              <option value="Done">Done</option>
             </select>
           </div>
         </div>

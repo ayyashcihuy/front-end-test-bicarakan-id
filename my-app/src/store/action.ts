@@ -53,18 +53,18 @@ export const fetchDataByCategory = (status: string) => {
   };
 };
 
-export const patchDoneTask = (id: number) => {
+export const patchDoneTask = (id: number, categoryName: string) => {
   console.log(id, "hehe");
   return (dispath: (arg0: (dispatch: any) => void) => void) => {
     axios({
       method: "PATCH",
       url: `http://localhost:3000/tasks/${id}`,
       data: {
-        status: "done",
+        status: "Done",
       },
     })
       .then(() => {
-        dispath(fetchData());
+        dispath(fetchDataByCategory(categoryName));
       })
       .catch((err) => {
         console.log(err.response);

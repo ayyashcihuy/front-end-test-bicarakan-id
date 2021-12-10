@@ -13,7 +13,7 @@ function CreateTask() {
     e.preventDefault();
     const data = {
       title,
-      status: "onProgress",
+      status: "On Progress",
       date: new Date().toLocaleString(),
     };
     dispatch(createData(data));
