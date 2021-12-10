@@ -1,0 +1,34 @@
+{
+  "tasks": [
+    {
+      "title": "Menjaga Hati ",
+      "status": "onProgress",
+      "date": "12/10/2021, 11:32:22 PM",
+      "id": 1
+    },
+    {
+      "title": "Menjaga Mata",
+      "status": "onProgress",
+      "date": "12/10/2021, 11:32:28 PM",
+      "id": 2
+    },
+    {
+      "title": "Menjaga Fikiran",
+      "status": "done",
+      "date": "12/10/2021, 11:32:39 PM",
+      "id": 3
+    },
+    {
+      "title": "Mencukur Rambut",
+      "status": "onProgress",
+      "date": "12/10/2021, 11:32:46 PM",
+      "id": 4
+    },
+    {
+      "title": "Membeli Popok",
+      "status": "onProgress",
+      "date": "12/10/2021, 11:32:54 PM",
+      "id": 5
+    }
+  ]
+}
